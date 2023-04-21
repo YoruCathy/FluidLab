@@ -23,6 +23,7 @@ class LatteArtEnv(FluidEnv):
         self.loss_type             = loss_type
         self.action_range          = np.array([-0.05, 0.05])
         self.renderer_type         = renderer_type
+        print(renderer_type)
 
         # create a taichi env
         self.taichi_env = TaichiEnv(
@@ -37,7 +38,7 @@ class LatteArtEnv(FluidEnv):
 
     def setup_agent(self):
         agent_cfg = CfgNode(new_allowed=True)
-        agent_cfg.merge_from_file(get_cfg_path('agent_latteart.yaml'))
+        agent_cfg.merge_from_file(get_cfg_path('agent_gathering.yaml'))
         self.taichi_env.setup_agent(agent_cfg)
         self.agent = self.taichi_env.agent
 
@@ -46,23 +47,23 @@ class LatteArtEnv(FluidEnv):
             file='cup.obj',
             pos=(0.63, 0.42, 0.5),
             euler=(0.0, 0.0, 0.0),
-            scale=(1.2, 1.2, 1.2),
+            scale=(1.2, 0.2, 1.2),
             material=CUP,
             has_dynamics=False,
         )
 
     def setup_bodies(self):
+        # self.taichi_env.add_body(
+        #     type='nowhere',
+        #     n_particles=60000,
+        #     material=MILK,
+        # )
         self.taichi_env.add_body(
-            type='nowhere',
-            n_particles=60000,
-            material=MILK,
-        )
-        self.taichi_env.add_body(
-            type='cylinder',
-            center=(0.5, 0.55, 0.5),
-            height=0.1,
-            radius=0.42,
-            material=COFFEE,
+            type='cube',
+            # center=(0.5, 0.55, 0.5),
+            lower=(0.4, 0.4, 0.4),
+            upper=(0.6, 0.6, 0.6),
+            material=PLASTIC_DEMO,
         )
 
     def setup_boundary(self):
@@ -86,7 +87,7 @@ class LatteArtEnv(FluidEnv):
         elif self.renderer_type == 'GL':
             self.taichi_env.setup_renderer(
                 type='GL',
-                render_particle=True,
+                render_particle=False,
                 camera_pos=(-0.15, 2.82, 2.5),
                 camera_lookat=(0.5, 0.5, 0.5),
                 fov=30,
@@ -112,7 +113,7 @@ class LatteArtEnv(FluidEnv):
         
     def demo_policy(self, user_input=False):
         if user_input:
-            init_p = np.array([0.5, 0.73, 0.5])
+            init_p = np.array([0.5, 0.6, 0.5])
             comp_actions_p = init_p
             return MousePolicy_vxz(init_p)
         else:

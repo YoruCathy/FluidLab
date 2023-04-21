@@ -42,22 +42,22 @@ def main():
         else:
             env = gym.make(args.env_name, seed=args.seed, loss=False, loss_type='diff', renderer_type=args.renderer_type)
         record_target(env, path=args.path, user_input=args.user_input)
-    elif args.replay_target:
-        if cfg is not None:
-            env = gym.make(cfg.EXP.env_name, seed=cfg.EXP.seed, loss=False, loss_type='diff', renderer_type=args.renderer_type)
-        else:
-            env = gym.make(args.env_name, seed=args.seed, loss=False, loss_type='diff', renderer_type=args.renderer_type)
-        replay_target(env)
-    elif args.replay_policy:
-        if cfg is not None:
-            env = gym.make(cfg.EXP.env_name, seed=cfg.EXP.seed, loss=False, loss_type='diff', renderer_type=args.renderer_type)
-        else:
-            env = gym.make(args.env_name, seed=args.seed, loss=False, loss_type='diff', renderer_type=args.renderer_type)
-        replay_policy(env, path=args.path)
-    else:
-        logger = Logger(args.exp_name)
-        env = gym.make(cfg.EXP.env_name, seed=cfg.EXP.seed, loss=True, loss_type='diff', renderer_type=args.renderer_type)
-        solve_policy(env, logger, cfg.SOLVER)
+    # elif args.replay_target:
+    #     if cfg is not None:
+    #         env = gym.make(cfg.EXP.env_name, seed=cfg.EXP.seed, loss=False, loss_type='diff', renderer_type=args.renderer_type)
+    #     else:
+    #         env = gym.make(args.env_name, seed=args.seed, loss=False, loss_type='diff', renderer_type=args.renderer_type)
+    #     replay_target(env)
+    # elif args.replay_policy:
+    #     if cfg is not None:
+    #         env = gym.make(cfg.EXP.env_name, seed=cfg.EXP.seed, loss=False, loss_type='diff', renderer_type=args.renderer_type)
+    #     else:
+    #         env = gym.make(args.env_name, seed=args.seed, loss=False, loss_type='diff', renderer_type=args.renderer_type)
+    #     replay_policy(env, path=args.path)
+    # else:
+    #     logger = Logger(args.exp_name)
+    #     env = gym.make(cfg.EXP.env_name, seed=cfg.EXP.seed, loss=True, loss_type='diff', renderer_type=args.renderer_type)
+    #     solve_policy(env, logger, cfg.SOLVER)
 
 if __name__ == '__main__':
     main()

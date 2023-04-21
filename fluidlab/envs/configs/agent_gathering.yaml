@@ -9,7 +9,7 @@ effectors:
       action_scale_v: (1.0, 1.0, 1.0)
     mesh:
       file: plate.obj
-      scale: (0.2, 0.2, 0.2)
+      scale: (0.3, 0.2, 0.3)
       euler: (0.0, 90.0, 0.0)
       material: PLATE
       softness: 100.0

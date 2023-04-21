@@ -129,7 +129,7 @@ COLOR = {
 
 ############ properties #############
 FRICTION = {
-    CUP     : 0.5,
+    CUP     : 100,
     TANK    : 0.5,
     BOWL    : 0.0,
     LADDLE  : 0.1,
@@ -137,7 +137,7 @@ FRICTION = {
     BOTTLE  : 0.1,
     PILLAR  : 0.0,
     STIRRER : 8.0,
-    PLATE   : 0.1,
+    PLATE   : 20,
 }
 
 MU = {
@@ -152,7 +152,7 @@ MU = {
     COFFEE_VIS     : 200.0,
     ELASTIC        : 416.67,
     ELASTIC_DEMO   : 10.0,
-    PLASTIC_DEMO   : 160.0,
+    PLASTIC_DEMO   : 120.0,
     ICECREAM       : 416.67,
     ICECREAM1       : 216.67,
     RIGID          : 416.67,

@@ -79,6 +79,7 @@ class IceCreamStaticEnv(FluidEnv):
         elif self.renderer_type == 'GL':
             self.taichi_env.setup_renderer(
                 type='GL',
+                render_particle=False,
                 camera_pos=(4.48, 2.41, -0.84),
                 camera_lookat=(3.64, 1.95, -0.56),
                 fov=18,
